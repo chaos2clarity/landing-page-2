@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowLeft, ArrowRight, Filter, Grid, LayoutGrid, List, Menu, MonitorDot, Moon, Plus, Settings, Share2, Table, X, ImagePlus, Link, Type } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Filter, Grid, LayoutGrid, List, Menu, MonitorDot, Moon, Plus, Settings, Share2, Table, X, ImagePlus, Link, Type, Sun } from 'lucide-react'
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import Script from 'next/script'
@@ -65,7 +65,8 @@ const noteContents: NoteContent[] = [
 ]
 
 export default function Component() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme: globalTheme } = useTheme()
+  const [localTheme, setLocalTheme] = useState<'light' | 'dark'>('dark')
   const [isNodeView, setIsNodeView] = useState(false)
   const [showSortDropdown, setShowSortDropdown] = useState(false)
   const [showSettingsDropdown, setShowSettingsDropdown] = useState(false)
@@ -154,19 +155,27 @@ export default function Component() {
     }
   }
 
+  const toggleLocalTheme = () => {
+    setLocalTheme(prev => prev === 'light' ? 'dark' : 'light')
+  }
+
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-zinc-950 text-zinc-50' : 'bg-white text-zinc-900'}`}>
+    <div className={`min-h-screen ${localTheme === 'dark' ? 'bg-zinc-950 text-zinc-50' : 'bg-white text-zinc-900'}`}
+      style={{
+        transition: 'background-color 0.2s, color 0.2s'
+      }}
+    >
       {/* Top Navigation */}
-      <header className={`border-b ${theme === 'dark' ? 'border-zinc-800' : 'border-pink-100'}`}>
+      <header className={`border-b ${localTheme === 'dark' ? 'border-zinc-800' : 'border-pink-100'} transition-colors duration-200`}>
         <div className="flex items-center justify-between p-2">
           <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-zinc-50">
+            <Button variant="ghost" size="icon" className={`text-zinc-400 hover:${localTheme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}>
               <Menu className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-zinc-50">
+            <Button variant="ghost" size="icon" className={`text-zinc-400 hover:${localTheme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}>
               <ArrowLeft className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-zinc-50">
+            <Button variant="ghost" size="icon" className={`text-zinc-400 hover:${localTheme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}>
               <ArrowRight className="h-5 w-5" />
             </Button>
             <div className="flex items-center space-x-1 text-sm text-zinc-400">
@@ -184,16 +193,22 @@ export default function Component() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className={`text-zinc-400 hover:${theme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}
+                className={`text-zinc-400 hover:${localTheme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}
                 onClick={() => setShowShareDropdown(!showShareDropdown)}
               >
                 <Share2 className="h-5 w-5" />
               </Button>
               {showShareDropdown && (
-                <div className="absolute right-0 mt-2 w-48 rounded-md bg-zinc-800 shadow-lg z-50">
+                <div className={`absolute right-0 mt-2 w-48 rounded-md ${
+                  localTheme === 'dark' ? 'bg-zinc-800' : 'bg-white border border-gray-200'
+                } shadow-lg z-50`}>
                   <div className="py-1">
                     <button
-                      className="block w-full px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-700"
+                      className={`block w-full px-4 py-2 text-sm ${
+                        localTheme === 'dark' 
+                          ? 'text-zinc-300 hover:bg-zinc-700' 
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
                       onClick={handleShare}
                     >
                       Copy Link
@@ -205,7 +220,7 @@ export default function Component() {
             <Button 
               variant="ghost" 
               size="icon" 
-              className={`text-zinc-400 hover:${theme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}
+              className={`text-zinc-400 hover:${localTheme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}
               onClick={toggleFullscreen}
             >
               <MonitorDot className="h-5 w-5" />
@@ -214,51 +229,69 @@ export default function Component() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className={`text-zinc-400 hover:${theme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}
+                className={`text-zinc-400 hover:${localTheme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}
                 onClick={() => setShowSettingsDropdown(!showSettingsDropdown)}
               >
                 <Settings className="h-5 w-5" />
               </Button>
               {showSettingsDropdown && (
-                <div className="absolute right-0 mt-2 w-48 rounded-md bg-zinc-800 shadow-lg z-50">
+                <div className={`absolute right-0 mt-2 w-48 rounded-md ${
+                  localTheme === 'dark' ? 'bg-zinc-800' : 'bg-white border border-gray-200'
+                } shadow-lg z-50`}>
                   <div className="py-1">
-                    <button className="block w-full px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-700">
+                    <button className={`block w-full px-4 py-2 text-sm ${
+                      localTheme === 'dark' 
+                        ? 'text-zinc-300 hover:bg-zinc-700' 
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}>
                       Preferences
                     </button>
-                    <button className="block w-full px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-700">
+                    <button className={`block w-full px-4 py-2 text-sm ${
+                      localTheme === 'dark' 
+                        ? 'text-zinc-300 hover:bg-zinc-700' 
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}>
                       Keyboard Shortcuts
                     </button>
                   </div>
                 </div>
               )}
             </div>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className={`text-zinc-400 hover:${theme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}
-              onClick={toggleTheme}
-            >
+            <AnimatePresence mode="popLayout" initial={false}>
               <motion.div
-                animate={{ rotate: theme === 'dark' ? 0 : 180 }}
-                transition={{ duration: 0.5 }}
+                key={localTheme}
+                initial={{ opacity: 0, rotate: -180 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 180 }}
+                transition={{ duration: 0.2 }}
               >
-                <Moon className="h-5 w-5" />
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className={`text-zinc-400 hover:${localTheme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}
+                  onClick={toggleLocalTheme}
+                  title={`Switch to ${localTheme === 'dark' ? 'light' : 'dark'} theme`}
+                >
+                  {localTheme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                </Button>
               </motion.div>
-            </Button>
+            </AnimatePresence>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="p-4">
+      <main className={`flex-1 overflow-auto p-4 ${
+        localTheme === 'dark' ? 'bg-zinc-950' : 'bg-white'
+      } transition-colors duration-200`}>
         {/* Title Section */}
         <div className={`mb-4 rounded-lg p-4 ${
-          theme === 'dark' 
+          localTheme === 'dark' 
             ? 'bg-gradient-to-t from-green-800/20 to-green-900/20'
             : 'bg-pink-50'
         }`}>
           <h1 className={`text-2xl font-semibold ${
-            theme === 'dark' 
+            localTheme === 'dark' 
               ? 'text-zinc-50'
               : 'text-zinc-900'
           }`}>Glaciology & Mass Balance Modeling</h1>
@@ -367,7 +400,7 @@ export default function Component() {
                   role="button"
                   tabIndex={0}
                   className={`${
-                    theme === 'dark' 
+                    localTheme === 'dark' 
                       ? 'border-zinc-800 bg-zinc-900/50' 
                       : 'border-gray-100 bg-white shadow-lg shadow-gray-200/50 hover:shadow-gray-200/70 transition-shadow'
                   } cursor-pointer hover:scale-[1.02] transition-transform`}
@@ -377,7 +410,7 @@ export default function Component() {
                       <span className="text-yellow-500">⭐</span>
                       <h3
                         className={`font-medium outline-none rounded px-1 ${
-                          theme === 'dark' 
+                          localTheme === 'dark' 
                             ? 'text-zinc-50 focus:bg-zinc-800' 
                             : 'text-gray-800 focus:bg-gray-100'
                         }`}
@@ -390,7 +423,7 @@ export default function Component() {
                     </div>
                     <p
                       className={`mt-2 text-sm outline-none rounded p-1 ${
-                        theme === 'dark'
+                        localTheme === 'dark'
                           ? 'text-zinc-400 focus:bg-zinc-800'
                           : 'text-gray-600 focus:bg-gray-100'
                       }`}
@@ -410,7 +443,7 @@ export default function Component() {
                   role="button"
                   tabIndex={0}
                   className={`${
-                    theme === 'dark' 
+                    localTheme === 'dark' 
                       ? 'border-zinc-800 bg-zinc-900/50' 
                       : 'border-gray-100 bg-white shadow-lg shadow-gray-200/50 hover:shadow-gray-200/70 transition-shadow'
                   } cursor-pointer hover:scale-[1.02] transition-transform`}
@@ -418,7 +451,7 @@ export default function Component() {
                   <CardContent className="p-4">
                     <h3
                       className={`font-medium outline-none rounded px-1 ${
-                        theme === 'dark' 
+                        localTheme === 'dark' 
                           ? 'text-zinc-50 focus:bg-zinc-800' 
                           : 'text-gray-800 focus:bg-gray-100'
                       }`}
@@ -430,7 +463,7 @@ export default function Component() {
                     </h3>
                     <p
                       className={`mt-2 text-sm outline-none rounded p-1 ${
-                        theme === 'dark'
+                        localTheme === 'dark'
                           ? 'text-zinc-400 focus:bg-zinc-800'
                           : 'text-gray-600 focus:bg-gray-100'
                       }`}
@@ -457,7 +490,7 @@ export default function Component() {
                   role="button"
                   tabIndex={0}
                   className={`${
-                    theme === 'dark' 
+                    localTheme === 'dark' 
                       ? 'border-zinc-800 bg-zinc-900/50' 
                       : 'border-gray-100 bg-white shadow-lg shadow-gray-200/50 hover:shadow-gray-200/70 transition-shadow'
                   } cursor-pointer hover:scale-[1.02] transition-transform`}
@@ -475,7 +508,7 @@ export default function Component() {
                     <div className="mt-4">
                       <h3
                         className={`font-medium outline-none rounded px-1 ${
-                          theme === 'dark' 
+                          localTheme === 'dark' 
                             ? 'text-zinc-50 focus:bg-zinc-800' 
                             : 'text-gray-800 focus:bg-gray-100'
                         }`}
@@ -487,7 +520,7 @@ export default function Component() {
                       </h3>
                       <p
                         className={`mt-2 text-sm outline-none rounded p-1 ${
-                          theme === 'dark'
+                          localTheme === 'dark'
                             ? 'text-zinc-400 focus:bg-zinc-800'
                             : 'text-gray-600 focus:bg-gray-100'
                         }`}
@@ -500,7 +533,7 @@ export default function Component() {
                       <div className="mt-2 flex space-x-2">
                         <span
                           className={`rounded-full px-2 py-1 text-xs ${
-                            theme === 'dark'
+                            localTheme === 'dark'
                               ? 'bg-zinc-800 text-zinc-400'
                               : 'bg-pink-100 text-zinc-600'
                           }`}
@@ -512,7 +545,7 @@ export default function Component() {
                         </span>
                         <span
                           className={`rounded-full px-2 py-1 text-xs ${
-                            theme === 'dark'
+                            localTheme === 'dark'
                               ? 'bg-zinc-800 text-zinc-400'
                               : 'bg-pink-100 text-zinc-600'
                           }`}
@@ -534,7 +567,7 @@ export default function Component() {
                   role="button"
                   tabIndex={0}
                   className={`${
-                    theme === 'dark' 
+                    localTheme === 'dark' 
                       ? 'border-zinc-800 bg-zinc-900/50' 
                       : 'border-gray-100 bg-white shadow-lg shadow-gray-200/50 hover:shadow-gray-200/70 transition-shadow'
                   } cursor-pointer hover:scale-[1.02] transition-transform`}
@@ -542,7 +575,7 @@ export default function Component() {
                   <CardContent className="p-4">
                     <h3
                       className={`mb-2 font-medium outline-none rounded px-1 ${
-                        theme === 'dark' 
+                        localTheme === 'dark' 
                           ? 'text-zinc-50 focus:bg-zinc-800' 
                           : 'text-gray-800 focus:bg-gray-100'
                       }`}
@@ -554,7 +587,7 @@ export default function Component() {
                     </h3>
                     <p
                       className={`text-sm outline-none rounded p-1 ${
-                        theme === 'dark'
+                        localTheme === 'dark'
                           ? 'text-zinc-400 focus:bg-zinc-800'
                           : 'text-gray-600 focus:bg-gray-100'
                       }`}
@@ -593,7 +626,7 @@ export default function Component() {
                   role="button"
                   tabIndex={0}
                   className={`${
-                    theme === 'dark' 
+                    localTheme === 'dark' 
                       ? 'border-zinc-800 bg-zinc-900/50' 
                       : 'border-gray-100 bg-white shadow-lg shadow-gray-200/50 hover:shadow-gray-200/70 transition-shadow'
                   } cursor-pointer hover:scale-[1.02] transition-transform`}
@@ -601,7 +634,7 @@ export default function Component() {
                   <CardContent className="p-4">
                     <h3
                       className={`mb-2 font-medium outline-none rounded px-1 ${
-                        theme === 'dark' 
+                        localTheme === 'dark' 
                           ? 'text-zinc-50 focus:bg-zinc-800' 
                           : 'text-gray-800 focus:bg-gray-100'
                       }`}
@@ -613,7 +646,7 @@ export default function Component() {
                     </h3>
                     <p
                       className={`text-sm outline-none rounded p-1 ${
-                        theme === 'dark'
+                        localTheme === 'dark'
                           ? 'text-zinc-400 focus:bg-zinc-800'
                           : 'text-gray-600 focus:bg-gray-100'
                       }`}
@@ -652,7 +685,7 @@ export default function Component() {
                   role="button"
                   tabIndex={0}
                   className={`${
-                    theme === 'dark' 
+                    localTheme === 'dark' 
                       ? 'border-zinc-800 bg-zinc-900/50' 
                       : 'border-gray-100 bg-white shadow-lg shadow-gray-200/50 hover:shadow-gray-200/70 transition-shadow'
                   } cursor-pointer hover:scale-[1.02] transition-transform`}
@@ -660,7 +693,7 @@ export default function Component() {
                   <CardContent className="p-4">
                     <h3
                       className={`mb-2 font-medium outline-none rounded px-1 ${
-                        theme === 'dark' 
+                        localTheme === 'dark' 
                           ? 'text-zinc-50 focus:bg-zinc-800' 
                           : 'text-gray-800 focus:bg-gray-100'
                       }`}
@@ -672,7 +705,7 @@ export default function Component() {
                     </h3>
                     <p
                       className={`text-sm outline-none rounded p-1 ${
-                        theme === 'dark'
+                        localTheme === 'dark'
                           ? 'text-zinc-400 focus:bg-zinc-800'
                           : 'text-gray-600 focus:bg-gray-100'
                       }`}
@@ -740,12 +773,12 @@ export default function Component() {
                     className="absolute -translate-x-1/2 -translate-y-1/2"
                   >
                     <div className={`rounded-full p-4 ${
-                      theme === 'dark' 
+                      localTheme === 'dark' 
                         ? 'bg-emerald-500/20' 
                         : 'bg-pink-50'
                     }`}>
                       <h3 className={`text-sm ${
-                        theme === 'dark' 
+                        localTheme === 'dark' 
                           ? 'text-emerald-200' 
                           : 'text-zinc-900'
                       }`}>{node.title}</h3>
@@ -771,7 +804,7 @@ export default function Component() {
                                 Math.cos(index * (Math.PI * 2) / nodes.length) * 200}
                             y2={Math.sin(targetIndex * (Math.PI * 2) / nodes.length) * 200 - 
                                 Math.sin(index * (Math.PI * 2) / nodes.length) * 200}
-                            stroke={theme === 'dark' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(244, 114, 182, 0.2)'}
+                            stroke={localTheme === 'dark' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(244, 114, 182, 0.2)'}
                             strokeWidth="2"
                           />
                         </svg>
@@ -798,7 +831,7 @@ export default function Component() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             className={`relative w-full max-w-2xl h-[80vh] rounded-xl p-6 ${
-              theme === 'dark' 
+              localTheme === 'dark' 
                 ? 'bg-zinc-900/95 border border-zinc-800 backdrop-blur-sm' 
                 : 'bg-white/95 border border-gray-200 backdrop-blur-sm'
             }`}
@@ -807,7 +840,7 @@ export default function Component() {
             <button
               onClick={() => setSelectedNote(null)}
               className={`absolute top-6 right-6 p-2 rounded-full transition-colors ${
-                theme === 'dark' 
+                localTheme === 'dark' 
                   ? 'hover:bg-zinc-800' 
                   : 'hover:bg-gray-100'
               }`}
@@ -819,7 +852,7 @@ export default function Component() {
             <div className="space-y-6 h-full overflow-y-auto px-2">
               <h2
                 className={`text-2xl font-medium outline-none rounded px-1 mb-8 ${
-                  theme === 'dark' 
+                  localTheme === 'dark' 
                     ? 'text-zinc-50 focus:bg-zinc-800' 
                     : 'text-gray-800 focus:bg-gray-100'
                 }`}
@@ -890,7 +923,7 @@ export default function Component() {
                     <span
                       key={i}
                       className={`rounded-full px-3 py-1 text-sm ${
-                        theme === 'dark'
+                        localTheme === 'dark'
                           ? 'bg-zinc-800 text-zinc-400'
                           : 'bg-gray-100 text-gray-600'
                       }`}

@@ -17,17 +17,17 @@ const CommandMenu = dynamic(() => import('./ui/command-menu').then(mod => mod.Co
 const demoContent = [
   {
     id: 1,
-    title: "Commands",
-    component: CommandMenu,
-    description: "A command palette for all your needs",
-    isComponent: true
-  },
-  {
-    id: 2,
     title: "Format",
     image: Frame35,
     description: "Modularized content and intuitive formatting. IEEE, APA, MLA? Within seconds.",
     preserveSize: true
+  },
+  {
+    id: 2,
+    title: "Commands",
+    component: CommandMenu,
+    description: "A command palette for all your needs",
+    isComponent: true
   },
   {
     id: 3,

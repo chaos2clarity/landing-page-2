@@ -2,15 +2,19 @@
 
 import Link from "next/link";
 import Logo from "@/public/logog.png";
+import LogoDark from "@/public/images/claritylogoblue.png"
+import LogoPurple from "@/public/images/claritylogopurple.png"
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Footer({ border = false }: { border?: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-
+  const { theme } = useTheme();
+  
   return (
     <footer ref={ref}>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -28,7 +32,7 @@ export default function Footer({ border = false }: { border?: boolean }) {
           {/* Logo and copyright */}
           <div className="space-y-2 sm:col-span-12 lg:col-span-4">
             <div>
-              <Image src={Logo} alt="Logo" width={150} height={90} />
+              <Image src={theme === "dark"? LogoDark : LogoPurple} alt="Logo" width={150} height={90} />
             </div>
             <div className="text-sm text-gray-600">
               &copy; {new Date().getFullYear()} Clarity - All rights reserved.
@@ -37,7 +41,7 @@ export default function Footer({ border = false }: { border?: boolean }) {
 
           {/* Navigation */}
           <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-2">
-            <h3 className="text-sm font-medium">Navigation</h3>
+            <h3 className={`text-sm font-medium ${theme==="dark"? "text-white" : "text-gray-600"}`}>Navigation</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
@@ -68,7 +72,7 @@ export default function Footer({ border = false }: { border?: boolean }) {
 
           {/* Resources */}
           <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-2">
-            <h3 className="text-sm font-medium">Resources</h3>
+            <h3 className={`text-sm font-medium ${theme==="dark"? "text-white" : "text-gray-600"}`}>Resources</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
@@ -91,7 +95,7 @@ export default function Footer({ border = false }: { border?: boolean }) {
 
           {/* Social */}
           <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-2">
-            <h3 className="text-sm font-medium">Social</h3>
+            <h3 className={`text-sm font-medium ${theme==="dark"? "text-white" : "text-gray-600"}`}>Social</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
