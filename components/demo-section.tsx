@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Frame35 from "@/public/frame35.png"
 import Frame36 from "@/public/images/frame36.png"
+import Storage from "@/public/storagedemo.svg"
 import { useTheme } from '@/contexts/ThemeContext'
 
 const demoContent = [
@@ -19,7 +20,8 @@ const demoContent = [
     title: "Format",
     image: Frame35,
     description: "Modularized content and intuitive formatting. IEEE, APA, MLA? Within seconds.",
-    scale: 1
+    scale: 1,
+    preserveSize: true
   },
   {
     id: 3,
@@ -30,8 +32,9 @@ const demoContent = [
   {
     id: 4,
     title: "Storage",
-    image: "/images/demo/dam-demo.jpg",
-    description: "Store files & notes intuitively"
+    image: Storage,
+    description: "Store files & notes intuitively",
+    preserveSize: true
   }
 ]
 
@@ -51,6 +54,16 @@ export default function DemoSection() {
 
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  // Preload all images
+  useEffect(() => {
+    demoContent.forEach(item => {
+      if (typeof item.image === 'string') {
+        const img = new window.Image()
+        img.src = item.image
+      }
+    })
   }, [])
 
   return (
@@ -90,39 +103,46 @@ export default function DemoSection() {
           <div className="w-full md:w-2/3 h-[600px] relative">
             <AnimatePresence mode='wait'>
               {demoContent.map((item) => (
-                activeId === item.id && (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ 
-                      duration: 0.3,
-                      ease: "easeOut"
-                    }}
-                    className={`absolute inset-0 flex items-center justify-center ${
-                      typeof item.image === 'string' 
-                        ? 'bg-gray-100 dark:bg-zinc-800 rounded-xl overflow-hidden' 
-                        : ''
-                    }`}
-                  >
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      {...(typeof item.image === 'string'
-                        ? {
-                            fill: true,
-                            className: "object-cover"
-                          }
-                        : {
-                            width: Frame35.width * (item.scale || 1),
-                            height: Frame35.height * (item.scale || 1),
-                            className: "object-contain transform -translate-y-8 drop-shadow-[0_0_30px_rgba(56,201,195,0.15)]"
-                          }
-                      )}
-                    />
-                  </motion.div>
-                )
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: activeId === item.id ? 1 : 0,
+                    y: activeId === item.id ? 0 : 20 
+                  }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ 
+                    duration: 0.4,  // Reduced duration
+                    ease: "easeOut"
+                  }}
+                  style={{ 
+                    display: activeId === item.id ? 'flex' : 'none',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                  className={`absolute inset-0 ${
+                    typeof item.image === 'string' 
+                      ? 'bg-gray-100 dark:bg-zinc-800 rounded-xl overflow-hidden' 
+                      : ''
+                  }`}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    priority
+                    {...(item.preserveSize
+                      ? {
+                          width: typeof item.image === 'string' ? 800 : Frame35.width * (item.scale || 1),
+                          height: typeof item.image === 'string' ? 600 : Frame35.height * (item.scale || 1),
+                          className: "object-contain transform -translate-y-8 drop-shadow-[0_0_30px_rgba(56,201,195,0.15)]"
+                        }
+                      : {
+                          fill: true,
+                          className: "object-cover"
+                        }
+                    )}
+                  />
+                </motion.div>
               ))}
             </AnimatePresence>
           </div>

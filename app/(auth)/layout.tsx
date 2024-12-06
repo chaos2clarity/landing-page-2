@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Logo from "@/public/logog.png";
 import AuthBg from "@/public/images/auth-bg.svg";
 import Link from "next/link";
 
@@ -16,7 +15,7 @@ export default function AuthLayout({
             {/* Site branding */}
             <div className="mr-4 shrink-0">
               <Link href="/">
-                <Image src={Logo} alt="Logo" width={150} height={80} />
+                {/* <Image src={Logo} alt="Logo" width={150} height={80} /> */}
               </Link>
             </div>
           </div>
