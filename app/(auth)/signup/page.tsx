@@ -4,34 +4,46 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { appwriteAuth } from '@/lib/appwrite'
+import { useRouter } from 'next/navigation'
 
 export default function SignUp() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState({ google: false, github: false })
+  const [error, setError] = useState('')
+  const router = useRouter()
+
+  const handleGoogleSignUp = async () => {
+    setIsLoading(prev => ({ ...prev, google: true }))
+    try {
+      await appwriteAuth.oAuthSignIn.google()
+    } catch (error: any) {
+      setError(error.message || 'Failed to sign in with Google')
+    } finally {
+      setIsLoading(prev => ({ ...prev, google: false }))
+    }
+  }
 
   const handleGithubSignUp = async () => {
     setIsLoading(prev => ({ ...prev, github: true }))
     try {
-      console.log('GitHub sign up clicked')
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate API call
-    } catch (error) {
-      console.error('GitHub auth error:', error)
+      await appwriteAuth.oAuthSignIn.github()
+    } catch (error: any) {
+      setError(error.message || 'Failed to sign in with GitHub')
     } finally {
       setIsLoading(prev => ({ ...prev, github: false }))
     }
   }
 
-  const handleGoogleSignUp = async () => {
-    setIsLoading(prev => ({ ...prev, google: true }))
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     try {
-      console.log('Google sign up clicked')
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate API call
-    } catch (error) {
-      console.error('Google auth error:', error)
-    } finally {
-      setIsLoading(prev => ({ ...prev, google: false }))
+      await appwriteAuth.createAccount(email, password, name)
+      router.push('/dashboard')
+    } catch (error: any) {
+      setError(error.message)
     }
   }
 

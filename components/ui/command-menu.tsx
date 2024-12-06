@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Search, Calculator, Code, FlaskRoundIcon as Flask, GitBranch, BarChart } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 import {
   Command,
@@ -34,10 +35,10 @@ const MathPreview = () => (
           Quick Math Preview
         </div>
         <div className="space-y-2">
-          <div className="rounded-md bg-zinc-50 dark:bg-zinc-800/50 p-2 text-center">
+          <div className="rounded-md bg-zinc-50 dark:bg-zinc-800/50 p-2 text-center text-gray-900 dark:text-gray-100">
             ∫<sub>a</sub><sup>b</sup> f(x) dx
           </div>
-          <div className="rounded-md bg-zinc-50 dark:bg-zinc-800/50 p-2 text-center">
+          <div className="rounded-md bg-zinc-50 dark:bg-zinc-800/50 p-2 text-center text-gray-900 dark:text-gray-100">
             E = mc<sup>2</sup>
           </div>
         </div>
@@ -86,41 +87,16 @@ const ChemistryPreview = () => (
     >
       <div className="space-y-3">
         <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-          SN2 Reaction Mechanism
+          Reaction Mechanism
         </div>
-        <div className="rounded-md bg-zinc-50 dark:bg-zinc-800/50 p-3 text-center space-y-2">
-          <div className="flex items-center justify-center space-x-3 font-mono text-sm">
-            <span>CH₃Br</span>
-            <span className="text-blue-500">+</span>
-            <span>OH⁻</span>
-            <span className="text-blue-500">→</span>
-            <span>CH₃OH</span>
-            <span className="text-blue-500">+</span>
-            <span>Br⁻</span>
-          </div>
-          <div className="flex items-center justify-center text-xs text-gray-500 dark:text-gray-400">
-            <span>Nucleophilic Substitution</span>
-          </div>
-          <div className="flex items-center justify-center mt-2">
-            <div className="relative w-48 h-12 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    opacity: [1, 0.8, 1]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="text-xs text-blue-600 dark:text-blue-400"
-                >
-                  ⚡ Energy: -42.5 kJ/mol
-                </motion.div>
-              </div>
-            </div>
-          </div>
+        <div className="bg-white rounded-lg p-3 relative h-[120px] shadow-sm">
+          <Image
+            src="/chemistryreactiondrawing.png"
+            alt="Chemistry Reaction Mechanism"
+            fill
+            className="object-contain"
+            priority
+          />
         </div>
       </div>
     </motion.div>
@@ -142,81 +118,41 @@ const NodeGraphPreview = () => (
         <div className="rounded-md bg-zinc-50 dark:bg-zinc-800/50 p-3 h-[140px] relative">
           {/* Central Node */}
           <motion.div 
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-[#A19FE7] rounded-full"
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
-          >
-            <div className="bg-purple-500/90 text-white text-xs px-3 py-1.5 rounded-full whitespace-nowrap">
-              Climate Change
-            </div>
-          </motion.div>
+          />
 
           {/* Connected Nodes */}
-          <motion.div 
-            className="absolute left-[15%] top-[20%] -translate-x-1/2"
-            animate={{ y: [-2, 2, -2] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
-            <div className="bg-blue-400/80 text-white text-[10px] px-2 py-1 rounded-full whitespace-nowrap">
-              Ocean Acidification
-            </div>
-            {/* Connection Line */}
+          <motion.div className="absolute left-[20%] top-[20%]">
             <motion.div 
-              className="absolute top-1/2 right-0 h-px bg-blue-200/50 dark:bg-blue-500/30"
-              style={{ width: '60px', transform: 'rotate(45deg) translateY(-50%)' }}
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              className="w-4 h-4 bg-[#A19FE7] bg-opacity-80 rounded-full"
+              animate={{ y: [-2, 2, -2] }}
+              transition={{ duration: 3, repeat: Infinity }}
             />
           </motion.div>
 
-          <motion.div 
-            className="absolute right-[15%] top-[20%] translate-x-1/2"
-            animate={{ y: [-3, 1, -3] }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-          >
-            <div className="bg-green-500/80 text-white text-[10px] px-2 py-1 rounded-full whitespace-nowrap">
-              Forest Conservation
-            </div>
-            {/* Connection Line */}
+          <motion.div className="absolute right-[20%] top-[20%]">
             <motion.div 
-              className="absolute top-1/2 left-0 h-px bg-green-200/50 dark:bg-green-500/30"
-              style={{ width: '60px', transform: 'rotate(-45deg) translateY(-50%)' }}
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              className="w-4 h-4 bg-[#A19FE7] bg-opacity-80 rounded-full"
+              animate={{ y: [-3, 1, -3] }}
+              transition={{ duration: 2.5, repeat: Infinity }}
             />
           </motion.div>
 
-          <motion.div 
-            className="absolute left-[20%] bottom-[20%] -translate-x-1/2"
-            animate={{ y: [-2, 2, -2] }}
-            transition={{ duration: 2.8, repeat: Infinity }}
-          >
-            <div className="bg-orange-400/80 text-white text-[10px] px-2 py-1 rounded-full whitespace-nowrap">
-              Global Temperature
-            </div>
-            {/* Connection Line */}
+          <motion.div className="absolute left-[20%] bottom-[20%]">
             <motion.div 
-              className="absolute bottom-1/2 right-0 h-px bg-orange-200/50 dark:bg-orange-500/30"
-              style={{ width: '70px', transform: 'rotate(-45deg) translateY(50%)' }}
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              className="w-4 h-4 bg-[#A19FE7] bg-opacity-80 rounded-full"
+              animate={{ y: [-2, 2, -2] }}
+              transition={{ duration: 2.8, repeat: Infinity }}
             />
           </motion.div>
 
-          <motion.div 
-            className="absolute right-[20%] bottom-[20%] translate-x-1/2"
-            animate={{ y: [-1, 3, -1] }}
-            transition={{ duration: 2.3, repeat: Infinity }}
-          >
-            <div className="bg-red-400/80 text-white text-[10px] px-2 py-1 rounded-full whitespace-nowrap">
-              Carbon Emissions
-            </div>
-            {/* Connection Line */}
+          <motion.div className="absolute right-[20%] bottom-[20%]">
             <motion.div 
-              className="absolute bottom-1/2 left-0 h-px bg-red-200/50 dark:bg-red-500/30"
-              style={{ width: '70px', transform: 'rotate(45deg) translateY(50%)' }}
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              className="w-4 h-4 bg-[#A19FE7] bg-opacity-80 rounded-full"
+              animate={{ y: [-1, 3, -1] }}
+              transition={{ duration: 2.3, repeat: Infinity }}
             />
           </motion.div>
         </div>
@@ -264,36 +200,6 @@ const PlotsPreview = () => (
             </div>
           </div>
 
-          {/* Line Plot */}
-          <div className="rounded-md bg-zinc-50 dark:bg-zinc-800/50 p-3 relative h-24">
-            <div className="text-[10px] text-gray-500 dark:text-gray-400 mb-1">Line Plot</div>
-            <div className="relative h-16">
-              <motion.div
-                className="absolute inset-x-2 top-1/2 h-px bg-purple-400"
-                animate={{
-                  d: ["M0,20 Q50,0 100,20", "M0,10 Q50,30 100,10", "M0,20 Q50,0 100,20"],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              <motion.div
-                className="absolute w-2 h-2 rounded-full bg-purple-400"
-                animate={{
-                  x: ["0%", "100%", "0%"],
-                  y: ["50%", "30%", "50%"],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-            </div>
-          </div>
-
           {/* Bar Chart */}
           <div className="rounded-md bg-zinc-50 dark:bg-zinc-800/50 p-3 relative h-24">
             <div className="text-[10px] text-gray-500 dark:text-gray-400 mb-1">Bar Chart</div>
@@ -312,27 +218,6 @@ const PlotsPreview = () => (
                   }}
                 />
               ))}
-            </div>
-          </div>
-
-          {/* Pie Chart */}
-          <div className="rounded-md bg-zinc-50 dark:bg-zinc-800/50 p-3 relative h-24">
-            <div className="text-[10px] text-gray-500 dark:text-gray-400 mb-1">Pie Chart</div>
-            <div className="relative h-16 flex items-center justify-center">
-              <motion.div
-                className="w-12 h-12 rounded-full border-4 border-transparent"
-                style={{
-                  background: "conic-gradient(from 0deg, #f87171 0%, #60a5fa 50%, #4ade80 100%)",
-                }}
-                animate={{
-                  rotate: [0, 360],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
             </div>
           </div>
         </div>

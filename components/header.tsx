@@ -27,16 +27,10 @@ export function Header() {
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-6">
               <Link 
-                href="#features" 
+                href="/#demo-section" 
                 className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
               >
                 Features
-              </Link>
-              <Link 
-                href="#pricing" 
-                className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
-              >
-                Pricing
               </Link>
               <Link 
                 href="/about" 
@@ -48,7 +42,7 @@ export function Header() {
             
             <ThemeToggle />
             
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <Link 
                 href="/signin"
                 className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white px-4 py-2"
@@ -66,7 +60,7 @@ export function Header() {
               >
                 Sign up
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

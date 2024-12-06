@@ -74,7 +74,7 @@ export default function HeroHome() {
                       } 
                       bg-[length:100%_100%] bg-[bottom] text-white shadow 
                       hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto`}
-                    href="#0"
+                    href="/join-waitlist"
                   >
                     <span className="relative inline-flex items-center">
                       Join Waitlist{" "}
@@ -85,7 +85,7 @@ export default function HeroHome() {
                   </a>
                   <a
                     className="btn w-full bg-zinc-800 dark:bg-white text-white dark:text-gray-800 shadow hover:bg-zinc-700 dark:hover:bg-gray-50 sm:ml-4 sm:w-auto"
-                    href="#0"
+                    href="/demo-section"
                   >
                     Our Features
                   </a>
