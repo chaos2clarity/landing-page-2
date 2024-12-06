@@ -27,9 +27,9 @@ export default function Home() {
         <DemoSection />
         {/* <AcademicEditor /> */}
       </section>
-      <BusinessCategories />
+      {/* <BusinessCategories />
       <LargeTestimonial />
-      <Cta />
+      <Cta /> */}
     </>
   );
 }
