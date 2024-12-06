@@ -3,31 +3,34 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import Frame35 from "@/public/frame35.png"
+import Frame36 from "@/public/images/frame36.png"
 
 const demoContent = [
   {
     id: 1,
-    title: "Math",
-    image: "/images/demo/cms-demo.jpg", // Replace with your image paths
-    description: "Type math equations with intuition"
+    title: "Commands",
+    image: "/images/demo/cms-demo.jpg",
+    description: "A command palette for all your needs"
   },
   {
     id: 2,
-    title: "Diagrams",
-    image: "/images/demo/ecommerce-demo.jpg",
-    description: "Fast and easy diagram creation"
+    title: "Format",
+    image: Frame35,
+    description: "Modularized content and intuitive formatting. IEEE, APA, MLA? Within seconds.",
+    scale: 1
   },
   {
     id: 3,
-    title: "Code",
+    title: "Math",
     image: "/images/demo/app-builder-demo.jpg",
-    description: "An executable code editor"
+    description: "Type math equations with intuition and 10x speed"
   },
   {
     id: 4,
-    title: "Format",
+    title: "Storage",
     image: "/images/demo/dam-demo.jpg",
-    description: "Format your text with flexibility."
+    description: "Store files & notes intuitively"
   }
 ]
 
@@ -35,25 +38,25 @@ export default function DemoSection() {
   const [activeId, setActiveId] = useState(1)
 
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
+    <section className="py-24 bg-white">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col md:flex-row gap-2 items-center justify-center">
           
           {/* Left side - Interactive text */}
-          <div className="w-full md:w-1/2 space-y-8">
+          <div className="w-full md:w-1/4 space-y-8">
             {demoContent.map((item) => (
               <div
                 key={item.id}
                 className="cursor-pointer group"
                 onMouseEnter={() => setActiveId(item.id)}
               >
-                <h3 className={`text-6xl font-medium transition-colors duration-300 ${
+                <h3 className={`text-[min(5vw,4rem)] leading-tight font-medium transition-colors duration-300 ${
                   activeId === item.id ? 'text-[#A19FE7]' : 'text-gray-400'
                 }`}>
                   {item.title}
                 </h3>
-                <p className={`mt-2 text-xl transition-colors duration-300 ${
-                  activeId === item.id ? 'text-gray-900' : 'text-gray-00'
+                <p className={`mt-2 text-[min(2vw,1.25rem)] transition-colors duration-300 max-w-[30ch] ${
+                  activeId === item.id ? 'text-gray-900' : 'text-gray-400'
                 }`}>
                   {item.description}
                 </p>
@@ -62,23 +65,37 @@ export default function DemoSection() {
           </div>
 
           {/* Right side - Image display */}
-          <div className="w-full md:w-1/2 h-[600px] relative bg-gray-100 rounded-xl overflow-hidden">
+          <div className="w-full md:w-2/3 h-[600px] relative">
             <AnimatePresence mode='wait'>
               {demoContent.map((item) => (
                 activeId === item.id && (
                   <motion.div
                     key={item.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ 
+                      duration: 0.3,
+                      ease: "easeOut"
+                    }}
+                    className={`absolute inset-0 flex items-center justify-center ${
+                      typeof item.image === 'string' ? 'bg-gray-100 rounded-xl overflow-hidden' : ''
+                    }`}
                   >
                     <Image
                       src={item.image}
                       alt={item.title}
-                      fill
-                      className="object-cover"
+                      {...(typeof item.image === 'string'
+                        ? {
+                            fill: true,
+                            className: "object-cover"
+                          }
+                        : {
+                            width: Frame35.width * (item.scale || 1),
+                            height: Frame35.height * (item.scale || 1),
+                            className: "object-contain transform -translate-y-8 drop-shadow-[0_0_30px_rgba(56,201,195,0.15)]"
+                          }
+                      )}
                     />
                   </motion.div>
                 )

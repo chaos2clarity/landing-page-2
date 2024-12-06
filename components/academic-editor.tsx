@@ -1,157 +1,170 @@
-'use client'
+// 'use client'
 
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, 
-  Superscript, Subscript, Quote, List, ListOrdered, Table, Image,
-  FileSymlink, Download, Share2
-} from 'lucide-react'
+// import React, { useState } from 'react'
+// import NextImage from 'next/image'
+// import { 
+//   Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, 
+//   Superscript, Subscript, Quote, List, ListOrdered, Table, Image,
+//   FileSymlink, Download, Share2, Moon, Sun
+// } from 'lucide-react'
+// import { Button } from './ui/button'
 
-const AcademicEditor = () => {
-  const [activeTab, setActiveTab] = useState('write')
-  
-  return (
-    <div className="min-h-screen bg-gray-900 p-4">
-      {/* Window Controls */}
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
-        </div>
-        <div className="flex gap-4">
-          <button className="text-gray-400 hover:text-gray-200">
-            <FileSymlink className="w-4 h-4" />
-          </button>
-          <button className="text-gray-400 hover:text-gray-200">
-            <Download className="w-4 h-4" />
-          </button>
-          <button className="text-gray-400 hover:text-gray-200">
-            <Share2 className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-      
-      {/* Main Editor Container */}
-      <div className="bg-gray-800 rounded-lg shadow-xl">
-        {/* Tabs */}
-        <div className="flex gap-1 px-4 pt-2">
-          {['Write', 'Preview', 'References', 'Statistics'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab.toLowerCase())}
-              className={`px-4 py-2 rounded-t-lg text-sm ${
-                activeTab === tab.toLowerCase()
-                  ? 'bg-gray-700 text-white'
-                  : 'text-gray-400 hover:text-gray-200'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-        
-        {/* Toolbar */}
-        <div className="bg-gray-700 p-3 flex items-center gap-4 border-b border-gray-600">
-          {/* Text Controls */}
-          <div className="flex items-center gap-2">
-            <select className="bg-gray-800 text-gray-300 px-2 py-1 rounded text-sm">
-              <option>Times New Roman</option>
-              <option>Arial</option>
-              <option>Latex Default</option>
-            </select>
-            <select className="bg-gray-800 text-gray-300 px-2 py-1 rounded text-sm w-16">
-              <option>12</option>
-              <option>14</option>
-              <option>16</option>
-            </select>
-          </div>
-          
-          {/* Format Controls */}
-          <div className="flex gap-1">
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <Bold className="w-4 h-4 text-gray-300" />
-            </button>
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <Italic className="w-4 h-4 text-gray-300" />
-            </button>
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <Underline className="w-4 h-4 text-gray-300" />
-            </button>
-          </div>
+// const AcademicEditor = () => {
+//   const [activeTab, setActiveTab] = useState('write')
+//   const [isDarkMode, setIsDarkMode] = useState(true)
+//   const [content, setContent] = useState('Start writing your academic paper...')
+//   const [isBold, setIsBold] = useState(false)
+//   const [isItalic, setIsItalic] = useState(false)
 
-          {/* Academic Controls */}
-          <div className="flex gap-1">
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <Superscript className="w-4 h-4 text-gray-300" />
-            </button>
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <Subscript className="w-4 h-4 text-gray-300" />
-            </button>
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <Quote className="w-4 h-4 text-gray-300" />
-            </button>
-          </div>
-          
-          {/* Structure Controls */}
-          <div className="flex gap-1">
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <List className="w-4 h-4 text-gray-300" />
-            </button>
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <ListOrdered className="w-4 h-4 text-gray-300" />
-            </button>
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <Table className="w-4 h-4 text-gray-300" />
-            </button>
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <Image className="w-4 h-4 text-gray-300" />
-            </button>
-          </div>
+//   const papers = [
+//     '/images/paper1.jpg',
+//     '/images/paper2.jpg',
+//     '/images/paper3.jpg'
+//   ]
 
-          {/* Alignment */}
-          <div className="flex gap-1">
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <AlignLeft className="w-4 h-4 text-gray-300" />
-            </button>
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <AlignCenter className="w-4 h-4 text-gray-300" />
-            </button>
-            <button className="p-1.5 hover:bg-gray-600 rounded">
-              <AlignRight className="w-4 h-4 text-gray-300" />
-            </button>
-          </div>
-        </div>
-        
-        {/* Editor Area */}
-        <div className="flex">
-          {/* Main Content */}
-          <div className="flex-1">
-            <div className="bg-white min-h-[600px] mx-4 my-4 shadow-lg p-8">
-              <div contentEditable className="outline-none min-h-[584px]">
-                Start writing your academic paper...
-              </div>
-            </div>
-          </div>
+//   const handleFormat = (type: string) => {
+//     switch(type) {
+//       case 'bold':
+//         setIsBold(!isBold)
+//         break
+//       case 'italic':
+//         setIsItalic(!isItalic)
+//         break
+//     }
+//   }
 
-          {/* Right Sidebar */}
-          <div className="w-64 bg-gray-750 p-4 border-l border-gray-700">
-            <h3 className="text-gray-300 font-medium mb-4">Document Outline</h3>
-            <div className="space-y-2 text-sm text-gray-400">
-              <div className="cursor-pointer hover:text-gray-200">Abstract</div>
-              <div className="cursor-pointer hover:text-gray-200">Introduction</div>
-              <div className="cursor-pointer hover:text-gray-200">Methodology</div>
-              <div className="cursor-pointer hover:text-gray-200">Results</div>
-              <div className="cursor-pointer hover:text-gray-200">Discussion</div>
-              <div className="cursor-pointer hover:text-gray-200">Conclusion</div>
-              <div className="cursor-pointer hover:text-gray-200">References</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+//   return (
+//     <div className="min-h-screen p-4 bg-white">
+//       <div className={`w-full max-w-6xl mx-auto ${
+//         isDarkMode ? 'bg-zinc-900' : 'bg-gray-100'
+//       } rounded-2xl shadow-xl overflow-hidden`}>
+//         {/* Window Controls */}
+//         <div className="flex items-center justify-between p-4">
+//           <div className="flex gap-2">
+//             <div className="w-3 h-3 rounded-full bg-red-500"></div>
+//             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+//             <div className="w-3 h-3 rounded-full bg-green-500"></div>
+//           </div>
+//           <div className="flex gap-4">
+//             <Button variant="ghost" size="icon" className={`${isDarkMode ? 'text-zinc-400 hover:text-zinc-50' : 'text-gray-600 hover:text-gray-900'}`}>
+//               <FileSymlink className="w-4 h-4" />
+//             </Button>
+//             <Button variant="ghost" size="icon" className={`${isDarkMode ? 'text-zinc-400 hover:text-zinc-50' : 'text-gray-600 hover:text-gray-900'}`}>
+//               <Download className="w-4 h-4" />
+//             </Button>
+//             <Button variant="ghost" size="icon" className={`${isDarkMode ? 'text-zinc-400 hover:text-zinc-50' : 'text-gray-600 hover:text-gray-900'}`}>
+//               <Share2 className="w-4 h-4" />
+//             </Button>
+//             <Button
+//               variant="ghost"
+//               size="icon"
+//               onClick={() => setIsDarkMode(!isDarkMode)}
+//               className={`${isDarkMode ? 'text-zinc-400 hover:text-zinc-50' : 'text-gray-600 hover:text-gray-900'}`}
+//             >
+//               {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+//             </Button>
+//           </div>
+//         </div>
 
-export default AcademicEditor 
+//         {/* Tabs */}
+//         <div className="flex gap-1 px-4">
+//           {['Write', 'Preview', 'References', 'Statistics'].map((tab) => (
+//             <button
+//               key={tab}
+//               onClick={() => setActiveTab(tab.toLowerCase())}
+//               className={`px-4 py-2 text-sm ${
+//                 activeTab === tab.toLowerCase()
+//                   ? isDarkMode 
+//                     ? 'bg-zinc-800 text-zinc-50' 
+//                     : 'bg-gray-200 text-gray-900'
+//                   : isDarkMode
+//                     ? 'text-zinc-400 hover:text-zinc-200'
+//                     : 'text-gray-600 hover:text-gray-900'
+//               }`}
+//             >
+//               {tab}
+//             </button>
+//           ))}
+//         </div>
+
+//         {/* Editor Area */}
+//         <div className="flex">
+//           {/* Main Content */}
+//           <div className="flex-1">
+//             <div className={`${
+//               isDarkMode ? 'bg-zinc-800' : 'bg-gray-50'
+//             } min-h-[500px] mx-4 my-4 shadow-lg p-8 rounded-lg border ${
+//               isDarkMode ? 'border-zinc-700' : 'border-gray-200'
+//             }`}>
+//               <textarea
+//                 value={content}
+//                 onChange={(e) => setContent(e.target.value)}
+//                 className={`w-full h-full min-h-[484px] bg-transparent outline-none resize-none ${
+//                   isDarkMode ? 'text-zinc-200 placeholder-zinc-500' : 'text-gray-900 placeholder-gray-500'
+//                 }`}
+//                 placeholder="Start writing your academic paper..."
+//               />
+//             </div>
+//           </div>
+
+//           {/* Right Sidebar with Images */}
+//           <div className={`w-64 ${
+//             isDarkMode ? 'bg-zinc-800 border-zinc-700' : 'bg-gray-100 border-gray-200'
+//           } p-4 border-l flex flex-col`}>
+//             {/* Document Outline */}
+//             <h3 className={`${
+//               isDarkMode ? 'text-zinc-200' : 'text-gray-900'
+//             } font-medium mb-4`}>Document Outline</h3>
+//             <div className="space-y-2 text-sm mb-6 group">
+//               {['Abstract', 'Introduction', 'Methodology', 'Results', 'Discussion', 'Conclusion', 'References'].map((item) => (
+//                 <div 
+//                   key={item} 
+//                   className={`cursor-pointer transition-all duration-200 px-2 py-1 rounded-md
+//                     ${isDarkMode 
+//                       ? 'text-zinc-400/70 hover:text-zinc-200 hover:bg-zinc-700/50' 
+//                       : 'text-gray-600/70 hover:text-gray-900 hover:bg-gray-200/50'
+//                     }
+//                     hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]
+//                     group-hover:[&:not(:hover)]:opacity-50
+//                   `}
+//                 >
+//                   {item}
+//                 </div>
+//               ))}
+//             </div>
+
+//             {/* Images Section */}
+//             <h3 className={`${
+//               isDarkMode ? 'text-zinc-200' : 'text-gray-900'
+//             } font-medium mb-4`}>Papers</h3>
+//             <div className="flex-1 overflow-y-auto space-y-4 pr-2">
+//               {papers.map((paper, index) => (
+//                 <div 
+//                   key={index}
+//                   className={`relative rounded-lg overflow-hidden border ${
+//                     isDarkMode ? 'border-zinc-700' : 'border-gray-200'
+//                   } hover:border-blue-500 transition-colors cursor-pointer`}
+//                 >
+//                   <NextImage
+//                     src={paper}
+//                     alt={`Paper ${index + 1}`}
+//                     width={220}
+//                     height={220}
+//                     className="object-cover w-full h-48"
+//                     onError={(e) => {
+//                       console.error(`Failed to load image: ${paper}`);
+//                       // Optionally set a fallback image
+//                       // e.currentTarget.src = '/fallback-image.jpg';
+//                     }}
+//                   />
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default AcademicEditor 

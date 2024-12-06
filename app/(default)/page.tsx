@@ -10,7 +10,7 @@ import BusinessCategories from "@/components/business-categories";
 import LargeTestimonial from "@/components/large-testimonial";
 import Cta from "@/components/cta";
 import DemoSection from '@/components/demo-section'
-import AcademicEditor from "@/components/academic-editor";
+// import AcademicEditor from "@/components/academic-editor";
 
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
           </ComputerFrame>
         </div>
         <DemoSection />
-        <AcademicEditor />
+        {/* <AcademicEditor /> */}
       </section>
       <BusinessCategories />
       <LargeTestimonial />
