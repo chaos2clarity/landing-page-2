@@ -2,18 +2,23 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Frame35 from "@/public/frame35.png"
 import Frame36 from "@/public/images/frame36.png"
 import Storage from "@/public/storagedemo.svg"
+import MathDemo from "@/public/images/mathdemo.svg"
 import { useTheme } from '@/contexts/ThemeContext'
+
+const CommandMenu = dynamic(() => import('./ui/command-menu').then(mod => mod.CommandMenu), { ssr: false })
 
 const demoContent = [
   {
     id: 1,
     title: "Commands",
-    image: "/images/demo/cms-demo.jpg",
-    description: "A command palette for all your needs"
+    component: CommandMenu,
+    description: "A command palette for all your needs",
+    isComponent: true
   },
   {
     id: 2,
@@ -26,8 +31,10 @@ const demoContent = [
   {
     id: 3,
     title: "Math",
-    image: "/images/demo/app-builder-demo.jpg",
-    description: "Type math equations with intuition and 10x speed"
+    image: MathDemo,
+    description: "Type math equations with intuition and 10x speed",
+    preserveSize: true,
+    scale: 1.5
   },
   {
     id: 4,
@@ -112,7 +119,7 @@ export default function DemoSection() {
                   }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ 
-                    duration: 0.4,  // Reduced duration
+                    duration: 0.4,
                     ease: "easeOut"
                   }}
                   style={{ 
@@ -121,27 +128,27 @@ export default function DemoSection() {
                     justifyContent: 'center'
                   }}
                   className={`absolute inset-0 ${
-                    typeof item.image === 'string' 
+                    !item.isComponent && typeof item.image === 'string'
                       ? 'bg-gray-100 dark:bg-zinc-800 rounded-xl overflow-hidden' 
                       : ''
                   }`}
                 >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    priority
-                    {...(item.preserveSize
-                      ? {
-                          width: typeof item.image === 'string' ? 800 : Frame35.width * (item.scale || 1),
-                          height: typeof item.image === 'string' ? 600 : Frame35.height * (item.scale || 1),
-                          className: "object-contain transform -translate-y-8 drop-shadow-[0_0_30px_rgba(56,201,195,0.15)]"
-                        }
-                      : {
-                          fill: true,
-                          className: "object-cover"
-                        }
-                    )}
-                  />
+                  {item.isComponent ? (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="w-full max-w-2xl">
+                        <item.component />
+                      </div>
+                    </div>
+                  ) : (
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      priority
+                      width={800}
+                      height={600}
+                      className="object-contain transform -translate-y-8 drop-shadow-[0_0_30px_rgba(56,201,195,0.15)]"
+                    />
+                  )}
                 </motion.div>
               ))}
             </AnimatePresence>
