@@ -25,7 +25,6 @@ const demoContent = [
     title: "Format",
     image: Frame35,
     description: "Modularized content and intuitive formatting. IEEE, APA, MLA? Within seconds.",
-    scale: 1,
     preserveSize: true
   },
   {
@@ -144,9 +143,18 @@ export default function DemoSection() {
                       src={item.image}
                       alt={item.title}
                       priority
-                      width={800}
-                      height={600}
-                      className="object-contain transform -translate-y-8 drop-shadow-[0_0_30px_rgba(56,201,195,0.15)]"
+                      quality={100}
+                      {...(item.preserveSize
+                        ? {
+                            width: Frame35.width,
+                            height: Frame35.height,
+                            className: "object-contain"
+                          }
+                        : {
+                            fill: true,
+                            className: "object-cover"
+                          }
+                      )}
                     />
                   )}
                 </motion.div>
