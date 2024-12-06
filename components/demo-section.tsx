@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Frame35 from "@/public/frame35.png"
 import Frame36 from "@/public/images/frame36.png"
 import Storage from "@/public/storagedemo.svg"
-import MathDemo from "@/public/images/mathdemo.svg"
+import MathDemo from "@/public/mathgood.svg"
 import { useTheme } from '@/contexts/ThemeContext'
 import Frame39 from "@/public/frame39.png"
 import Frame40 from "@/public/Frame40.svg"
@@ -32,7 +32,7 @@ const demoContent = [
   {
     id: 3,
     title: "Math",
-    image: Frame40,
+    image: MathDemo,
     description: "Type math equations with intuition and 10x speed",
     preserveSize: true,
     scale: 0.5
