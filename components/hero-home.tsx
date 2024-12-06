@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import PageIllustration from "@/components/page-illustration";
 import Avatar01 from "@/public/images/avatar-01.jpg";
@@ -9,8 +11,13 @@ import Avatar06 from "@/public/images/avatar-06.jpg";
 import Frame from "@/public/images/frame.png";
 import MathDemo from "@/public/yes.svg";
 import Biglogo from "@/public/logogo.svg";
+import ClarityLogoPurple from "@/public/images/claritylogopurple.png";
+import ClarityLogoBlue from "@/public/images/claritylogoblue.png";
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function HeroHome() {
+  const { theme } = useTheme();
+
   return (
     <section className="relative">
       <PageIllustration />
@@ -24,7 +31,13 @@ export default function HeroHome() {
               data-aos="zoom-y-out"
             >
               <div className="-mx-0.5 flex justify-center -space-x-3">
-                <Image src={Biglogo} alt="Logo" width={270} height={100} />
+                <Image
+                  src={theme === 'dark' ? ClarityLogoBlue : ClarityLogoPurple}
+                  alt="Logo"
+                  width={270}
+                  height={100}
+                  priority
+                />
               </div>
             </div>
             <h1
@@ -36,7 +49,7 @@ export default function HeroHome() {
               data-aos="zoom-y-out"
               data-aos-delay={150}
             >
-              Write science notes like it's pen and paper <br className="max-lg:hidden" />
+              Write scientific content like it's pen and paper <br className="max-lg:hidden" />
             </h1>
             <div className="mx-auto max-w-3xl">
               <p
@@ -54,7 +67,13 @@ export default function HeroHome() {
                   data-aos-delay={450}
                 >
                   <a
-                    className="btn group mb-4 w-full bg-gradient-to-t from-[#A19FE7] to-[#A19FE0] bg-[length:100%_100%] bg-[bottom] text-white shadow hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto"
+                    className={`btn group mb-4 w-full bg-gradient-to-t 
+                      ${theme === 'dark' 
+                        ? 'from-[#8ABFFF] to-[#8ABFFF]' // Ocean blue for dark mode
+                        : 'from-[#A19FE7] to-[#A19FE0]' // Light violet for light mode
+                      } 
+                      bg-[length:100%_100%] bg-[bottom] text-white shadow 
+                      hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto`}
                     href="#0"
                   >
                     <span className="relative inline-flex items-center">
@@ -80,7 +99,7 @@ export default function HeroHome() {
             data-aos="zoom-y-out"
             data-aos-delay={600}
           >
-            <div className="relative flex flex-col gap-4 rounded-2xl bg-grey-900 px-5 py-3 shadow-xl transition-transform hover:scale-105 
+            <div className="relative flex flex-col gap-4 rounded-2xl bg-grey-900 px-5 py-3 shadow-xl transition-transform hover:scale-110
               before:pointer-events-none before:absolute before:-inset-5 before:border-y 
               before:[border-image:linear-gradient(to_right,transparent,theme(colors.slate.300/.8),transparent)1]
               dark:before:[border-image:linear-gradient(to_right,transparent,theme(colors.slate.600/.8),transparent)1]
