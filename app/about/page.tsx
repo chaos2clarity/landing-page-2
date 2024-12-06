@@ -1,11 +1,11 @@
 import TeamSection from '@/components/team-section'
-import Header from '@/components/ui/header'
+// import Header from '@/components/ui/header'
 import Footer from '@/components/ui/footer'
 
 export default function AboutPage() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>
         <TeamSection />
       </main>

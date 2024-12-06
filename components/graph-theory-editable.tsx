@@ -565,7 +565,7 @@ export default function Component() {
                       The surface energy balance determines melt rates and is given by:
                     </p>
                     <div
-                      className="my-4 text-center text-lg"
+                      className="my-4 text-center text-md"
                       contentEditable
                       suppressContentEditableWarning
                       onBlur={(e) => {

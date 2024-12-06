@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        georgia: ['Georgia', 'serif'],
+        georgia: ['Georgia', 'Times New Roman', 'serif'],
       },
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1.5" }],
