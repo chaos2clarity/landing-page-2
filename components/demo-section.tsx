@@ -9,6 +9,8 @@ import Frame36 from "@/public/images/frame36.png"
 import Storage from "@/public/storagedemo.svg"
 import MathDemo from "@/public/images/mathdemo.svg"
 import { useTheme } from '@/contexts/ThemeContext'
+import Frame39 from "@/public/frame39.png"
+import Frame40 from "@/public/Frame40.svg"
 
 const CommandMenu = dynamic(() => import('./ui/command-menu').then(mod => mod.CommandMenu), { ssr: false })
 
@@ -30,10 +32,10 @@ const demoContent = [
   {
     id: 3,
     title: "Math",
-    image: MathDemo,
+    image: Frame40,
     description: "Type math equations with intuition and 10x speed",
     preserveSize: true,
-    scale: 1.5
+    scale: 0.5
   },
   {
     id: 4,
