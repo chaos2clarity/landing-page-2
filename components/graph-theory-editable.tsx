@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import Script from 'next/script'
 import { useTheme } from '@/components/theme-provider'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SlashCommandMenu } from './slash-command-menu'
 
@@ -60,7 +60,7 @@ const noteContents: NoteContent[] = [
   {
     title: "Mass Balance",
     content: "What we have here is called the temperature-index model, it takes into account the temperature and the solar radiation to calculate the melt, allowing us to relate to the energy balance model as well.",
-    math: "\\[M=\\left\\{\\begin{array}{c}TF\\cdot T+SRF(1-\\alpha)G\\cdot Icf: T \\cup G>0 \\\\ 0: T \\leq 1 \\cap G=0\\end{array}\\right.\\]"
+    math: "\\[M=\\left\\{\\begin{array}{c}TF\\cdot T+SRF(1-\\\alpha)G\\cdot Icf: T \\cup G>0 \\\\ 0: T \\leq 1 \\cap G=0\\end{array}\\right.\\]"
   }
 ]
 
@@ -79,6 +79,7 @@ export default function Component() {
   const [slashMenuOpen, setSlashMenuOpen] = useState(false)
   const [slashMenuPosition, setSlashMenuPosition] = useState({ x: 0, y: 0 })
   const contentEditableRef = useRef<HTMLDivElement>(null)
+  const [notes, setNotes] = useState<NoteContent[]>(noteContents)
 
   const MOVEMENT_DAMPING = 1
   const MOVEMENT_SPEED = 0.000005
@@ -160,7 +161,9 @@ export default function Component() {
   }
 
   return (
-    <div className={`min-h-screen ${localTheme === 'dark' ? 'bg-zinc-950 text-zinc-50' : 'bg-white text-zinc-900'}`}
+    <div 
+      data-testid="graph-theory"
+      className={`min-h-screen ${localTheme === 'dark' ? 'bg-zinc-950 text-zinc-50' : 'bg-white text-zinc-900'}`}
       style={{
         transition: 'background-color 0.2s, color 0.2s'
       }}
@@ -724,7 +727,7 @@ export default function Component() {
                         if (window.MathJax) window.MathJax.typeset();
                       }}
                     >
-                      {"\\[M=\\left\\{\\begin{array}{c}TF\\cdot T+SRF(1-\\alpha)G\\cdot Icf: T \\cup G>0 \\\\ 0: T \\leq 1 \\cap G=0\\end{array}\\right.\\]"}
+                      {"\\[M=\\left\\{\\begin{array}{c}TF\\cdot T+SRF(1-\\\alpha)G\\cdot Icf: T \\cup G>0 \\\\ 0: T \\leq 1 \\cap G=0\\end{array}\\right.\\]"}
                     </div>
                   </CardContent>
                 </Card>
