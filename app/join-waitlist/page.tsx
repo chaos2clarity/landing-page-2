@@ -57,24 +57,7 @@ export default function JoinWaitlist() {
                 />
               </div>
 
-              <div className="mt-10 flex items-center justify-center gap-x-6">
-                <div className="flex flex-col items-center space-y-4">
-                  <div className="flex space-x-8">
-                    <div className="flex flex-col items-center">
-                      <h3 className="text-3xl font-bold text-gray-900">120+</h3>
-                      <p className="text-sm text-gray-600">People Waiting</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <h3 className="text-3xl font-bold text-gray-900">10+</h3>
-                      <p className="text-sm text-gray-600">Universities</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <h3 className="text-3xl font-bold text-gray-900">5+</h3>
-                      <p className="text-sm text-gray-600">Countries</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            
             </motion.div>
           </div>
 
