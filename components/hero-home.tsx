@@ -85,7 +85,14 @@ export default function HeroHome() {
                   </a>
                   <a
                     className="btn w-full bg-zinc-800 dark:bg-white text-white dark:text-gray-800 shadow hover:bg-zinc-700 dark:hover:bg-gray-50 sm:ml-4 sm:w-auto"
-                    href="/demo-section"
+                    href="#features"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const featuresSection = document.getElementById('features');
+                      if (featuresSection) {
+                        featuresSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
                   >
                     Our Features
                   </a>

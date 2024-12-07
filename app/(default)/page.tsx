@@ -19,17 +19,15 @@ export default function Home() {
       <Hero />
       <section className="relative">
         <div className="py-12 md:py-20">
-       
           <ComputerFrame>
             <GraphTheoryEditable />
           </ComputerFrame>
         </div>
-        <DemoSection />
-        {/* <AcademicEditor /> */}
+        <div id="features">
+          <DemoSection />
+        </div>
       </section>
-      {/* <BusinessCategories />
-      <LargeTestimonial />
-      <Cta /> */}
+      {/* <AcademicEditor /> */}
     </>
   );
 }
