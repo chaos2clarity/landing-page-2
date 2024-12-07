@@ -1,19 +1,25 @@
-export const metadata = {
-  title: "Home - Simple",
-  description: "Page description",
-};
+'use client';
 
+import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Hero from "@/components/hero-home";
 import GraphTheoryEditable from "@/components/graph-theory-editable";
 import { ComputerFrame } from "@/components/ui/computer-frame";
-import BusinessCategories from "@/components/business-categories";
-import LargeTestimonial from "@/components/large-testimonial";
-import Cta from "@/components/cta";
-import DemoSection from '@/components/demo-section'
-// import AcademicEditor from "@/components/academic-editor";
-
+import DemoSection from '@/components/demo-section';
 
 export default function Home() {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    // Check if we should scroll to features
+    if (searchParams.get('scrollToFeatures')) {
+      const featuresSection = document.getElementById('features');
+      if (featuresSection) {
+        featuresSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [searchParams]);
+
   return (
     <>
       <Hero />
@@ -27,7 +33,6 @@ export default function Home() {
           <DemoSection />
         </div>
       </section>
-      {/* <AcademicEditor /> */}
     </>
   );
 }

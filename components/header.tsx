@@ -6,9 +6,27 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { useTheme } from '@/contexts/ThemeContext'
 import Logo from "@/public/purelogo.svg"
 import LogoDark from "@/public/images/purelogoblue.png"
+import { usePathname, useRouter } from 'next/navigation'
 
 export function Header() {
   const { theme } = useTheme()
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const handleFeaturesClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    
+    if (pathname === '/') {
+      // If on main page, just scroll to features
+      const featuresSection = document.getElementById('features')
+      if (featuresSection) {
+        featuresSection.scrollIntoView({ behavior: 'smooth' })
+      }
+    } else {
+      // If on another page, navigate to main page and then scroll
+      router.push('/?scrollToFeatures=true')
+    }
+  }
 
   return (
     <header className="fixed w-full z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm">
@@ -26,12 +44,13 @@ export function Header() {
 
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-6">
-              <Link 
-                href="/#demo-section" 
-                className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
+              <a 
+                href="#features" 
+                onClick={handleFeaturesClick}
+                className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white cursor-pointer"
               >
                 Features
-              </Link>
+              </a>
               <Link 
                 href="/about" 
                 className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
@@ -41,26 +60,6 @@ export function Header() {
             </nav>
             
             <ThemeToggle />
-            
-            {/* <div className="flex items-center gap-2">
-              <Link 
-                href="/signin"
-                className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white px-4 py-2"
-              >
-                Sign in
-              </Link>
-              <Link 
-                href="/signup"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium 
-                  bg-primary hover:bg-primary/90 h-10 px-4 py-2
-                  text-gray-900 dark:text-white
-                  ring-offset-background transition-colors 
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
-                  disabled:pointer-events-none disabled:opacity-50"
-              >
-                Sign up
-              </Link>
-            </div> */}
           </div>
         </div>
       </div>
