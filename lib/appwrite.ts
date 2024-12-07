@@ -1,14 +1,23 @@
+'use client';
+
 import { Client, Account, ID } from 'appwrite';
 
-const client = new Client()
-    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-    .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!);
+let client: Client | null = null;
+let account: Account | null = null;
 
-export const account = new Account(client);
+// Initialize client only on the client side
+if (typeof window !== 'undefined') {
+    client = new Client()
+        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
+        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!);
+    
+    account = new Account(client);
+}
 
 export const appwriteAuth = {
     // Create account with email/password
     createAccount: async (email: string, password: string, name: string) => {
+        if (!account) throw new Error('Appwrite not initialized');
         try {
             const response = await account.create(
                 ID.unique(),
@@ -27,6 +36,7 @@ export const appwriteAuth = {
 
     // Email/Password Sign In
     signIn: async (email: string, password: string) => {
+        if (!account) throw new Error('Appwrite not initialized');
         try {
             const session = await account.createSession(email, password);
             return session;
@@ -38,6 +48,7 @@ export const appwriteAuth = {
 
     // Sign Out
     signOut: async () => {
+        if (!account) throw new Error('Appwrite not initialized');
         try {
             await account.deleteSession('current');
         } catch (error) {
@@ -49,6 +60,7 @@ export const appwriteAuth = {
     // OAuth methods
     oAuthSignIn: {
         google: async () => {
+            if (!account) throw new Error('Appwrite not initialized');
             try {
                 return await account.createOAuth2Session(
                     'google' as any,
@@ -62,6 +74,7 @@ export const appwriteAuth = {
         },
         
         github: async () => {
+            if (!account) throw new Error('Appwrite not initialized');
             try {
                 return await account.createOAuth2Session(
                     'github' as any,
@@ -77,6 +90,7 @@ export const appwriteAuth = {
 
     // Get Current Session
     getCurrentSession: async () => {
+        if (!account) throw new Error('Appwrite not initialized');
         try {
             return await account.getSession('current');
         } catch (error) {
@@ -87,6 +101,7 @@ export const appwriteAuth = {
 
     // Get Current User
     getCurrentUser: async () => {
+        if (!account) throw new Error('Appwrite not initialized');
         try {
             return await account.get();
         } catch (error) {
