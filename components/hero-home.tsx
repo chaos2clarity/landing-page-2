@@ -49,7 +49,7 @@ export default function HeroHome() {
               data-aos="zoom-y-out"
               data-aos-delay={150}
             >
-              Write scientific content like it's pen and paper <br className="max-lg:hidden" />
+              Write scientific content like it's pen and paper. <br className="max-lg:hidden" />
             </h1>
             <div className="mx-auto max-w-3xl">
               <p
@@ -130,9 +130,20 @@ export default function HeroHome() {
                   className="w-full rounded-lg"
                 />
               </div>
+
+              
             </div>
+            
           </div>
         </div>
+        <div className="flex justify-center pt-12 pb-4 dark:text-white">
+                <h1 className="text-5xl font-md">
+                  Write contents that think just like you.
+            </h1>
+          </div>
+          <p className="text-center text-md dark:text-gray-300 pt-2">
+              Highly customizable modularized note blocks to retain your thinking process.
+            </p>
       </div>
     </section>
   );

@@ -52,6 +52,12 @@ export function Header() {
                 Features
               </a>
               <Link 
+                href="/product" 
+                className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
+              >
+                Product
+              </Link>
+              <Link 
                 href="/about" 
                 className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
               >
