@@ -51,35 +51,33 @@ export function Header() {
 
         {/* Navigation Links */}
         <div className="flex items-center text-xs sm:text-sm font-medium gap-2 sm:gap-4 lg:gap-8">
+          {/* Hide Pricing, Guide, and Blogs on mobile - only show on sm and larger screens */}
           <Link 
             href="/pricing"
-            className="text-zinc-300 hover:text-white transition-colors duration-200 px-2 py-1 rounded touch-manipulation"
+            className="hidden sm:block text-zinc-300 hover:text-white transition-colors duration-200 px-2 py-1 rounded touch-manipulation"
           >
-            <span className="hidden sm:inline">Pricing</span>
-            <span className="sm:hidden">Pricing</span>
+            Pricing
           </Link>
           
           <Link 
             href="/guide"
-            className="text-zinc-300 hover:text-white transition-colors duration-200 px-2 py-1 rounded touch-manipulation"
+            className="hidden sm:block text-zinc-300 hover:text-white transition-colors duration-200 px-2 py-1 rounded touch-manipulation"
           >
-            <span className="hidden sm:inline">Guide</span>
-            <span className="sm:hidden">Guide</span>
+            Guide
           </Link>
           
           <Link 
             href="/blogs"
-            className="text-zinc-300 hover:text-white transition-colors duration-200 px-2 py-1 rounded touch-manipulation"
+            className="hidden sm:block text-zinc-300 hover:text-white transition-colors duration-200 px-2 py-1 rounded touch-manipulation"
           >
-            <span className="hidden sm:inline">Blogs</span>
-            <span className="sm:hidden">Blogs</span>
+            Blogs
           </Link>
           
           <Link 
             href="/join-waitlist"
-            className="bg-violet-500 px-2 sm:px-3 rounded-full 
+            className="bg-violet-500 px-4 sm:px-3 rounded-full 
             text-xs sm:text-sm py-0 sm:py-1 transition-colors hover:bg-purple-300 text-white font-medium
-            min-h-[44px] flex items-center justify-center touch-manipulation"
+            min-h-[44px] flex items-center justify-center touch-manipulation w-auto sm:w-auto"
           >
             <span className="hidden sm:inline">Join Waitlist</span>
             <span className="sm:hidden">Join Waitlist</span>

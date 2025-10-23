@@ -21,7 +21,7 @@ export default function LandingPage() {
               {/* Hero Section Rounded Button for Latest News/Versions/Updates */}
               <div className="text-left">
                 <button 
-                  onClick={() => window.open('mailto:chenzhengyang070@gmail.com?subject=Team Expansion Opportunity', '_blank')}
+                  onClick={() => void 0}
                   className="mb-3 inline-flex items-center gap-2 rounded-full 
                   bg-zinc-800 p-1 px-3 sm:px-4 pr-2 sm:pr-2 border-1 border-white/80
                   text-xs sm:text-sm text-zinc-300 hover:bg-zinc-700 hover:border-white/50 
