@@ -10,6 +10,8 @@ module.exports = {
     extend: {
       fontFamily: {
         georgia: ['Georgia', 'Times New Roman', 'serif'],
+        'inter': ['Inter', 'system-ui', 'sans-serif'],
+        'playfair': ['Playfair Display', 'Georgia', 'serif'],
       },
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1.5" }],

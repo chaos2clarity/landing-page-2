@@ -1,44 +1,148 @@
-'use client';
+'use client'
 
-import { useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
-import Hero from "@/components/hero-home";
-import GraphTheoryEditable from "@/components/graph-theory-editable";
-import { ComputerFrame } from "@/components/ui/computer-frame";
-import DemoSection from '@/components/demo-section';
+import Link from "next/link";   
+import Image from "next/image";
+import { useTheme } from '@/contexts/ThemeContext';
+import ClarityLogoPurple from "@/public/images/claritylogopurple.png";
+import ClarityLogoBlue from "@/public/images/claritylogoblue.png";
+import KaTeXRenderer from '@/components/KaTeXRenderer';
+import { Badge } from "lucide-react";
 
-function ScrollToFeatures() {
-  const searchParams = useSearchParams();
+export default function LandingPage() {
+  const { theme } = useTheme();
 
-  useEffect(() => {
-    if (searchParams.get('scrollToFeatures')) {
-      const featuresSection = document.getElementById('features');
-      if (featuresSection) {
-        featuresSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  }, [searchParams]);
-
-  return null;
-}
-
-export default function Home() {
   return (
-    <>
-      <Suspense fallback={null}>
-        <ScrollToFeatures />
-      </Suspense>
-      <Hero />
-      <section className="relative">
-        <div className="py-12 md:py-20">
-          <ComputerFrame>
-            <GraphTheoryEditable />
-          </ComputerFrame>
+    <div className="min-h-screen bg-zinc-900">
+      <div className="mx-4 sm:mx-6 px-4 sm:px-0">
+        <div className="relative mx-auto flex justify-center max-w-5xl">
+          <div className="w-full">
+            {/* Hero Section */}
+            <div className="relative z-10 pt-16 sm:pt-24">
+              {/* Hero Section Rounded Button for Latest News/Versions/Updates */}
+              <div className="text-left">
+                <button 
+                  onClick={() => window.open('mailto:chenzhengyang070@gmail.com?subject=Team Expansion Opportunity', '_blank')}
+                  className="mb-3 inline-flex items-center gap-2 rounded-full 
+                  bg-zinc-800 p-1 px-3 sm:px-4 pr-2 sm:pr-2.75 border-1 border-white/80
+                  text-xs sm:text-sm text-zinc-300 hover:bg-zinc-700 hover:border-white/50 
+                  transition-colors duration-200 cursor-pointer min-h-[44px] touch-manipulation"
+                >
+                  <Badge className="w-3 h-3 border-violet-500 flex-shrink-0" />
+                  <span className="text-left leading-tight">We are actively looking to expand the team.</span>
+                </button>
+              </div>
+              
+              {/* Hero Section Slogan */}
+              <div className="text-left">
+                <h1 className="max-w-3xl text-3xl sm:text-4xl lg:text-5xl 
+                  leading-tight sm:leading-13 font-semibold tracking-tighter text-white">
+                  Write math and science content
+                </h1>
+                <h2 className="mt-2 sm:mt-1 text-lg sm:text-xl lg:text-2xl font-medium tracking-tight text-zinc-300">
+                  with a simpler, smoother and addictive experience.
+                </h2>
+                
+                {/* Mission Section */}
+                <div className="mt-12 sm:mt-16 lg:mt-24 max-w-3xl">
+                  <div className="space-y-4 sm:space-y-6 text-zinc-300 leading-relaxed">
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-6 sm:mb-8">
+                      Mission
+                    </h3>
+                    <p className="text-sm sm:text-base">
+                      Take a look at this equation:
+                      <KaTeXRenderer expression="\frac{\partial^2 \tilde{E}_x}{\partial z^2} + \omega^2 \mu \epsilon \tilde{E}_x = 0" />, 
+                      It is {" "}
+                      <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700 break-all">
+                        {`\\frac{\\partial^2 \\tilde{E}_x}{\\partial z^2} + \\omega^2 \\mu \\epsilon \\tilde{E}_x = 0`}
+                      </code> in latex, and <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700 break-all">
+                        {`$\\tilde{E}_x''(z) + \\omega^2 \\mu\\,\\epsilon\\,\\tilde{E}_x(z) = 0$`}
+                      </code> in typst. 
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      Writing math and science shouldn't require learning a 1980s language. 
+                      But that's exactly what LaTeX forces on millions of students, researchers, and professionals every day.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      Overleaf. Typst. Notion's equation blocks. They all have the same fundamental flaw: they're built on top of LaTeX syntax. 
+                      They've added prettier interfaces, but the cognitive load remains. You still need to remember syntax like {" "}
+                      <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700">\frac&#123;&#125;&#123;&#125;</code>, <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700">\int_&#123;&#125;^&#123;&#125;</code>,  
+                      {" "}<code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700">\sum_&#123;&#125;^&#123;&#125;</code>, and hundreds of other commands just to express something you already understand.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      {`{clarity}`} is a complete reimagining of how mathematical notation should work in the digital age. 
+                      Not a better LaTeX editor. Not a syntax wrapper. A ground-up rebuild of the math editing stack.
+                    </p>
+                    
+                  </div>
+                </div>
+
+                {/* Core Innovation Section */}
+                <div className="mt-8 sm:mt-10 max-w-3xl">
+                  <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">
+                    The Core Innovation
+                  </h4>
+                  <p className="mb-4 sm:mb-6 text-sm sm:text-base text-zinc-300">
+                    We're restructuring mathematical syntax at the fundamental level:
+                  </p>
+                  <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-zinc-300">
+                      <li className="flex pl-2 items-start">
+                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
+                        <span className="leading-relaxed">Natural language input system, No syntax memorization.</span>
+                      </li>
+                      <li className="flex pl-2 items-start">
+                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
+                        <span className="leading-relaxed">Custom rendering engine: Built specifically for real-time, collaborative editing without LaTeX's legacy constraints</span>
+                      </li>
+                      <li className="flex pl-2 items-start">
+                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
+                        <span className="leading-relaxed">Zero learning curve: If you can type in English, you can write complex mathematical expressions immediately</span>
+                      </li>
+                      <li className="flex pl-2 items-start">
+                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
+                        <span className="leading-relaxed">The editor is then used to build a notebook to truly serve the people in STEM, called claritynotes.</span>
+                      </li>
+                  </ul>
+                </div>
+
+                {/* Technical Approach Section */}
+                <div className="mt-8 sm:mt-10 mb-16 sm:mb-24 lg:mb-32 max-w-3xl">
+                  <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">
+                    The Technical Approach
+                  </h4>
+                  <div className="space-y-4 sm:space-y-6 text-sm sm:text-base text-zinc-300">
+                    <p className="leading-relaxed">
+                      Most "math editors" are thin wrappers around existing open-source packages (MathQuill, KaTeX, MathJax). 
+                      These tools were designed to render LaTeX, not to replace it, and they were never designed to be used 
+                      in an editorial & collaborative environment. 
+                    </p>
+                    <p className="leading-relaxed">
+                      We're taking a different path:
+                    </p>
+                    <ul className="space-y-3 sm:space-y-4">
+                      <li className="flex pl-2 items-start">
+                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
+                        <span className="leading-relaxed">Building our own parsing layer that understands mathematical intent from natural language</span>
+                      </li>
+                      <li className="flex pl-2 items-start">
+                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
+                        <span className="leading-relaxed">Creating a new intermediate representation that's simpler and more flexible than LaTeX's token system</span>
+                      </li>
+                      <li className="flex pl-2 items-start">
+                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
+                        <span className="leading-relaxed">Developing a custom renderer optimized for interactive editing, not static document compilation</span>
+                      </li>
+                    </ul>
+                    <p className="pt-4 leading-relaxed">
+                      This is requires restructuring the math editing stack from the ground up.
+                      It's hard. But it's the only way to truly eliminate the syntax barrier.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="features">
-          <DemoSection />
         </div>
-      </section>
-    </>
+        </div>
   );
 }
