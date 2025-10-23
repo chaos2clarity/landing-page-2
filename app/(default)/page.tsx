@@ -63,10 +63,14 @@ export default function LandingPage() {
                       But that's exactly what LaTeX forces on millions of students, researchers, and professionals every day.
                     </p>
                     <p className="text-sm sm:text-base font-medium text-zinc-400 leading-relaxed">
-                      Overleaf. Typst. Notion's equation blocks. They all have the same fundamental flaw: they're built on top of LaTeX syntax. 
+                      Most editors like Notion, Overleaf...etc. all have the same fundamental flaw: they're built on top of LaTeX syntax. 
                       They've added prettier interfaces, but the cognitive load remains. You still need to remember syntax like {" "}
                       <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700">\frac&#123;&#125;&#123;&#125;</code>, <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700">\int_&#123;&#125;^&#123;&#125;</code>,  
                       {" "}<code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700">\sum_&#123;&#125;^&#123;&#125;</code>, and hundreds of other commands just to express something you already understand.
+                    </p>
+                    <p className="text-sm sm:text-base font-medium text-zinc-400 leading-relaxed">
+                    The solution isn't building a better LaTeX editor. We've had 40 years of those. 
+                    We need to rebuild the whole stack, an intuitive collaborative math editor so simple a 5th grader can use it, where people can work on mathematics without special training.
                     </p>
                     <p className="text-sm sm:text-base font-medium text-zinc-400 leading-relaxed">
                       {`{clarity}`} is a complete reimagining of how mathematical notation should work in the digital age. 
@@ -111,7 +115,7 @@ export default function LandingPage() {
                   </h4>
                   <div className="space-y-4 sm:space-y-6 text-sm sm:text-base font-medium text-zinc-400">
                     <p className="leading-relaxed">
-                      Most "math editors" are thin wrappers around existing open-source packages (MathQuill, KaTeX, MathJax). 
+                      Most "math editors" are thin wrappers around existing open-source packages. 
                       These tools were designed to render LaTeX, not to replace it, and they were never designed to be used 
                       in an editorial & collaborative environment. 
                     </p>
