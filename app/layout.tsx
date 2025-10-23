@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import { Header } from '@/components/header'
+import { Analytics } from '@vercel/analytics/react'
 import "./css/style.css"
 // import { AuthProvider } from '@/lib/auth-context'
 
@@ -51,6 +52,7 @@ export default function RootLayout({
               </main>
             </div>
           {/* </AuthProvider> */}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

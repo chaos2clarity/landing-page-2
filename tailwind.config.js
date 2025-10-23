@@ -12,6 +12,7 @@ module.exports = {
         georgia: ['Georgia', 'Times New Roman', 'serif'],
         'inter': ['Inter', 'system-ui', 'sans-serif'],
         'playfair': ['Playfair Display', 'Georgia', 'serif'],
+        'alternate': ['Alternate', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1.5" }],

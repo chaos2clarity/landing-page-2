@@ -17,13 +17,13 @@ export default function LandingPage() {
         <div className="relative mx-auto flex justify-center max-w-5xl">
           <div className="w-full">
             {/* Hero Section */}
-            <div className="relative z-10 pt-16 sm:pt-24">
+            <div className="relative z-10 pt-20 sm:pt-28">
               {/* Hero Section Rounded Button for Latest News/Versions/Updates */}
               <div className="text-left">
                 <button 
                   onClick={() => window.open('mailto:chenzhengyang070@gmail.com?subject=Team Expansion Opportunity', '_blank')}
                   className="mb-3 inline-flex items-center gap-2 rounded-full 
-                  bg-zinc-800 p-1 px-3 sm:px-4 pr-2 sm:pr-2.75 border-1 border-white/80
+                  bg-zinc-800 p-1 px-3 sm:px-4 pr-2 sm:pr-2 border-1 border-white/80
                   text-xs sm:text-sm text-zinc-300 hover:bg-zinc-700 hover:border-white/50 
                   transition-colors duration-200 cursor-pointer min-h-[44px] touch-manipulation"
                 >
@@ -58,17 +58,17 @@ export default function LandingPage() {
                         {`$\\tilde{E}_x''(z) + \\omega^2 \\mu\\,\\epsilon\\,\\tilde{E}_x(z) = 0$`}
                       </code> in typst. 
                     </p>
-                    <p className="text-sm sm:text-base">
+                    <p className="text-sm sm:text-base font-medium text-zinc-400 leading-relaxed">
                       Writing math and science shouldn't require learning a 1980s language. 
                       But that's exactly what LaTeX forces on millions of students, researchers, and professionals every day.
                     </p>
-                    <p className="text-sm sm:text-base">
+                    <p className="text-sm sm:text-base font-medium text-zinc-400 leading-relaxed">
                       Overleaf. Typst. Notion's equation blocks. They all have the same fundamental flaw: they're built on top of LaTeX syntax. 
                       They've added prettier interfaces, but the cognitive load remains. You still need to remember syntax like {" "}
                       <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700">\frac&#123;&#125;&#123;&#125;</code>, <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700">\int_&#123;&#125;^&#123;&#125;</code>,  
                       {" "}<code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700">\sum_&#123;&#125;^&#123;&#125;</code>, and hundreds of other commands just to express something you already understand.
                     </p>
-                    <p className="text-sm sm:text-base">
+                    <p className="text-sm sm:text-base font-medium text-zinc-400 leading-relaxed">
                       {`{clarity}`} is a complete reimagining of how mathematical notation should work in the digital age. 
                       Not a better LaTeX editor. Not a syntax wrapper. A ground-up rebuild of the math editing stack.
                     </p>
@@ -81,10 +81,10 @@ export default function LandingPage() {
                   <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">
                     The Core Innovation
                   </h4>
-                  <p className="mb-4 sm:mb-6 text-sm sm:text-base text-zinc-300">
+                  <p className="mb-4 sm:mb-6 text-sm sm:text-base font-medium text-zinc-400 leading-relaxed">
                     We're restructuring mathematical syntax at the fundamental level:
                   </p>
-                  <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-zinc-300">
+                  <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base font-medium text-zinc-400">
                       <li className="flex pl-2 items-start">
                         <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
                         <span className="leading-relaxed">Natural language input system, No syntax memorization.</span>
@@ -109,7 +109,7 @@ export default function LandingPage() {
                   <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">
                     The Technical Approach
                   </h4>
-                  <div className="space-y-4 sm:space-y-6 text-sm sm:text-base text-zinc-300">
+                  <div className="space-y-4 sm:space-y-6 text-sm sm:text-base font-medium text-zinc-400">
                     <p className="leading-relaxed">
                       Most "math editors" are thin wrappers around existing open-source packages (MathQuill, KaTeX, MathJax). 
                       These tools were designed to render LaTeX, not to replace it, and they were never designed to be used 

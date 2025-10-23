@@ -78,7 +78,7 @@ export function Header() {
           <Link 
             href="/join-waitlist"
             className="bg-violet-500 px-2 sm:px-3 rounded-full 
-            text-xs sm:text-sm py-0 sm:py-1.5 transition-colors hover:bg-purple-300 text-white font-medium
+            text-xs sm:text-sm py-0 sm:py-1 transition-colors hover:bg-purple-300 text-white font-medium
             min-h-[44px] flex items-center justify-center touch-manipulation"
           >
             <span className="hidden sm:inline">Join Waitlist</span>
