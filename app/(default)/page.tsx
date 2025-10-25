@@ -51,11 +51,11 @@ export default function LandingPage() {
                     <p className="text-sm sm:text-base">
                       Take a look at this equation:
                       <KaTeXRenderer expression="\frac{\partial^2 \tilde{E}_x}{\partial z^2} + \omega^2 \mu \epsilon \tilde{E}_x = 0" />, 
-                      It is {" "}
+                      It is {" "} <br/>
                       <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700 break-all">
-                        {`\\frac{\\partial^2 \\tilde{E}_x}{\\partial z^2} + \\omega^2 \\mu \\epsilon \\tilde{E}_x = 0`}
+                        {`$$\\frac{\\partial^2 \\tilde{E}_x}{\\partial z^2} + \\omega^2 \\mu \\epsilon \\tilde{E}_x = 0$$`}
                       </code> in latex, and <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700 break-all">
-                        {`$\\tilde{E}_x''(z) + \\omega^2 \\mu\\,\\epsilon\\,\\tilde{E}_x(z) = 0$`}
+                        {`$( ∂ ^2tilde( E ) ""_( x ))/( ∂  z ^2)+omega^2mu epsilon.alt tilde( E _( x )) =0$`}
                       </code> in typst. 
                     </p>
                     <p className="text-sm sm:text-base font-medium text-zinc-400 leading-relaxed">
