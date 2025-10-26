@@ -55,7 +55,7 @@ export default function LandingPage() {
                       <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700 break-all">
                         {`$$\\frac{\\partial^2 \\tilde{E}_x}{\\partial z^2} + \\omega^2 \\mu \\epsilon \\tilde{E}_x = 0$$`}
                       </code> in latex, and <code className="bg-zinc-800 text-zinc-200 px-1 py-0.5 rounded font-mono text-xs sm:text-sm border border-zinc-700 break-all">
-                        {`$( ∂ ^2tilde( E ) ""_( x ))/( ∂  z ^2)+omega^2mu epsilon.alt tilde( E _( x )) =0$`}
+                        {`$(partial^2 tilde(E)_x)/(partial z^2) + omega^2 mu epsilon.alt tilde(E)_x = 0$`}
                       </code> in typst. 
                     </p>
                     <p className="text-sm sm:text-base font-medium text-zinc-400 leading-relaxed">
