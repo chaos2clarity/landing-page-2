@@ -28,7 +28,7 @@ export default function LandingPage() {
                   transition-colors duration-200 cursor-pointer min-h-[44px] touch-manipulation"
                 >
                   <Badge className="w-3 h-3 border-violet-500 flex-shrink-0" />
-                  <span className="text-left leading-tight">We are actively looking to expand the team.</span>
+                  <span className="text-left px-4 py-1 leading-tight">Building...</span>
                 </button>
               </div>
               
@@ -41,6 +41,23 @@ export default function LandingPage() {
                 <h2 className="mt-2 sm:mt-1 text-lg sm:text-xl lg:text-2xl font-medium tracking-tight text-zinc-300">
                   with a simpler, smoother and addictive experience.
                 </h2>
+                
+                {/* Video Section */}
+                <div className="mt-8 sm:mt-12 lg:mt-16 max-w-3xl">
+                  <p className="text-sm sm:text-base text-zinc-400 mb-3">Product demo as of october</p>
+                  <video 
+                    src="/videos/try.mp4" 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline
+                    preload="auto"
+                    className="w-full rounded-lg shadow-lg"
+                    style={{ minHeight: '300px', backgroundColor: '#18181b' }}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
                 
                 {/* Mission Section */}
                 <div className="mt-12 sm:mt-16 lg:mt-24 max-w-3xl">
@@ -81,7 +98,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* Core Innovation Section */}
-                <div className="mt-8 sm:mt-10 max-w-3xl">
+                <div className="mt-8 sm:mt-10 max-w-3xl mb-20">
                   <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">
                     The Core Innovation
                   </h4>
@@ -101,47 +118,13 @@ export default function LandingPage() {
                         <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
                         <span className="leading-relaxed">Zero learning curve: If you can type in English, you can write complex mathematical expressions immediately</span>
                       </li>
-                      <li className="flex pl-2 items-start">
+                      <li className="flex pl-2 items-start mb-10">
                         <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
                         <span className="leading-relaxed">The editor is then used to build a notebook to truly serve the people in STEM, called claritynotes.</span>
                       </li>
                   </ul>
                 </div>
 
-                {/* Technical Approach Section */}
-                <div className="mt-8 sm:mt-10 mb-16 sm:mb-24 lg:mb-32 max-w-3xl">
-                  <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">
-                    The Technical Approach
-                  </h4>
-                  <div className="space-y-4 sm:space-y-6 text-sm sm:text-base font-medium text-zinc-400">
-                    <p className="leading-relaxed">
-                      Most "math editors" are thin wrappers around existing open-source packages. 
-                      These tools were designed to render LaTeX, not to replace it, and they were never designed to be used 
-                      in an editorial & collaborative environment. 
-                    </p>
-                    <p className="leading-relaxed">
-                      We're taking a different path:
-                    </p>
-                    <ul className="space-y-3 sm:space-y-4">
-                      <li className="flex pl-2 items-start">
-                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                        <span className="leading-relaxed">Building our own parsing layer that understands mathematical intent from natural language</span>
-                      </li>
-                      <li className="flex pl-2 items-start">
-                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                        <span className="leading-relaxed">Creating a new intermediate representation that's simpler and more flexible than LaTeX's token system</span>
-                      </li>
-                      <li className="flex pl-2 items-start">
-                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                        <span className="leading-relaxed">Developing a custom renderer optimized for interactive editing, not static document compilation</span>
-                      </li>
-                    </ul>
-                    <p className="pt-4 leading-relaxed">
-                      This is requires restructuring the math editing stack from the ground up.
-                      It's hard. But it's the only way to truly eliminate the syntax barrier.
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
