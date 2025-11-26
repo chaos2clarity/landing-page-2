@@ -1,4 +1,4 @@
-# Video Optimization Architecture Guide
+git# Video Optimization Architecture Guide
 
 ## Current Problem
 Your video file (`moveifdf.mp4`) is **147MB** for a 4-minute video. This is causing:
