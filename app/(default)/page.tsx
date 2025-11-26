@@ -6,6 +6,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import ClarityLogoPurple from "@/public/images/claritylogopurple.png";
 import ClarityLogoBlue from "@/public/images/claritylogoblue.png";
 import KaTeXRenderer from '@/components/KaTeXRenderer';
+import OptimizedVideo from '@/components/optimized-video';
 import { Badge } from "lucide-react";
 
 export default function LandingPage() {
@@ -45,18 +46,15 @@ export default function LandingPage() {
                 {/* Video Section */}
                 <div className="mt-8 sm:mt-12 lg:mt-16 max-w-3xl">
                   <p className="text-sm sm:text-base text-zinc-400 mb-3">Product demo as of october</p>
-                  <video 
-                    src="/videos/try.mp4" 
-                    autoPlay 
-                    muted 
-                    loop 
-                    playsInline
-                    preload="auto"
-                    className="w-full rounded-lg shadow-lg"
-                    style={{ minHeight: '300px', backgroundColor: '#18181b' }}
-                  >
-                    Your browser does not support the video tag.
-                  </video>
+                  <OptimizedVideo
+                    src="/videos/moveifdf.mp4"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    playsInline={true}
+                    preload="none"
+                    className="w-full"
+                  />
                 </div>
                 
                 {/* Mission Section */}
