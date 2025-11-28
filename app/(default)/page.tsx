@@ -47,7 +47,7 @@ export default function LandingPage() {
                 <div className="mt-8 sm:mt-12 lg:mt-16 max-w-3xl">
                   <p className="text-sm sm:text-base text-zinc-400 mb-3">Product demo as of october</p>
                   <OptimizedVideo
-                    src="/videos/moveifdf.mp4"
+                    src="/videos/try.mp4"
                     autoPlay={true}
                     muted={true}
                     loop={true}

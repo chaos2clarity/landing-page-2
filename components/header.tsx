@@ -73,15 +73,28 @@ export function Header() {
             Blogs
           </Link>
           
-          <Link 
-            href="/join-waitlist"
-            className="bg-violet-500 px-4 sm:px-3 rounded-full 
-            text-xs sm:text-sm py-0 sm:py-1 transition-colors hover:bg-purple-300 text-white font-medium
-            min-h-[44px] flex items-center justify-center touch-manipulation w-auto sm:w-auto"
-          >
-            <span className="hidden sm:inline">Join Waitlist</span>
-            <span className="sm:hidden">Join Waitlist</span>
-          </Link>
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <Link 
+              href="/join-waitlist"
+              className="bg-violet-500 px-4 sm:px-3 rounded-full 
+              text-xs sm:text-sm py-0 sm:py-1 transition-colors hover:bg-purple-300 text-white font-medium
+              min-h-[44px] flex items-center justify-center touch-manipulation w-auto sm:w-auto"
+            >
+              <span className="hidden sm:inline">Join Waitlist</span>
+              <span className="sm:hidden">Join Waitlist</span>
+            </Link>
+            
+            <Link 
+              href="https://app.claritynotes.co"
+              className="bg-zinc-700 border border-zinc-600 px-4 sm:px-3 rounded-full 
+              text-xs sm:text-sm py-0 sm:py-1 transition-colors hover:bg-zinc-600 hover:border-zinc-500 text-white font-medium
+              min-h-[44px] flex items-center justify-center touch-manipulation w-auto sm:w-auto
+              shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]"
+            >
+              <span className="hidden sm:inline">Try Beta</span>
+              <span className="sm:hidden">Try Beta</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
